@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FeedbackContext } from './context/FeedbackContext';
 import { useFeedback } from './hooks/useFeedback';
+import './style.css';
 
 const App = () => {
   const {
@@ -15,6 +16,8 @@ const App = () => {
     actor,
   } = useContext(FeedbackContext);
   const { handleSubmit } = useFeedback();
+  
+  // removed activeTask for simplification
 
   const tasks = [
     '15 min vocab review',
@@ -23,72 +26,60 @@ const App = () => {
   ];
 
   return (
-    <div style={{ maxWidth: 600, margin: '2rem auto', fontFamily: 'Arial' }}>
+    <section className="app-container">
+      <h2 className="greeting">
+        Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening'}, {actor}!
+      </h2>
+      <p className="plate-prompt">What’s on your plate right now?</p>
+      <label htmlFor="taskSelect">Choose a task:</label>
+      <select
+        id="taskSelect"
+        className="task-select"
+        value={selectedTask}
+        onChange={(e) => setSelectedTask(e.target.value)}
+      >
+        <option value="">-- Select a task --</option>
+        {tasks.map((task, index) => (
+          <option key={index} value={task}>
+            {task}
+          </option>
+        ))}
+      </select>
       <h1>Flow Feedback</h1>
       {!submitted ? (
-        <div>
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit({ actor: 'Miguel' }); }}>
           <label>How energized are you right now? {energy}%</label>
           <input
             type="range"
+            className="slider"
             min="0"
             max="100"
             value={energy}
             onChange={(e) => setEnergy(Number(e.target.value))}
-            style={{ width: '100%' }}
           />
-
-          <h3>Pick a task:</h3>
-          {tasks.map((task) => (
-            <button
-              key={task}
-              style={{
-                display: 'block',
-                width: '100%',
-                marginBottom: '0.5rem',
-                background: selectedTask === task ? '#444' : '#eee',
-                color: selectedTask === task ? '#fff' : '#000',
-                padding: '0.5rem',
-                textAlign: 'left',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-              }}
-              onClick={() => setSelectedTask(task)}
-            >
-              {task}
-            </button>
-          ))}
 
           <label>What helped or didn’t work?</label>
           <textarea
+            className="feedback-textarea"
             rows="3"
-            style={{ width: '100%', marginBottom: '1rem' }}
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
           />
 
           <button
-            onClick={() => handleSubmit({ actor: 'Miguel' })}
+            className="submit-button"
+            type="submit"
             disabled={!selectedTask}
-            style={{
-              backgroundColor: '#0070f3',
-              color: '#fff',
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              width: '100%',
-            }}
           >
             Submit Feedback
           </button>
-        </div>
+        </form>
       ) : (
-        <div style={{ color: 'green', marginTop: '2rem' }}>
+        <div style={{ color: 'green', marginTop: '2rem' }} role="status">
           ✅ Thanks! Your feedback was recorded.
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
