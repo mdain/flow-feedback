@@ -1,0 +1,20 @@
+# Node modules
+node_modules/
+
+# Vite build output
+dist/
+
+# Logs
+*.log
+
+# Local environment variables
+.env
+.env.local
+
+# Obsidian workspace
+.obsidian/workspace
+.obsidian/workspace.json
+
+# System files
+.DS_Store
+Thumbs.db
