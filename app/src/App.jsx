@@ -47,7 +47,17 @@ const App = () => {
       </select>
       <h1>Flow Feedback</h1>
       {!submitted ? (
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit({ actor: 'Miguel' }); }}>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          setSubmitted(true);
+          setTimeout(() => {
+            setSubmitted(false);
+          }, 4000); // Reset after 4 seconds
+          handleSubmit({ actor });
+          setEnergy(50);
+          setFeedback('');
+          setSelectedTask('');
+        }}>
           <label>How energized are you right now? {energy}%</label>
           <input
             type="range"
@@ -75,7 +85,7 @@ const App = () => {
           </button>
         </form>
       ) : (
-        <div style={{ color: 'green', marginTop: '2rem' }} role="status">
+        <div className="feedback-confirmation" role="status">
           ✅ Thanks! Your feedback was recorded.
         </div>
       )}
