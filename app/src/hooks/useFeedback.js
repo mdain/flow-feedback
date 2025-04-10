@@ -10,8 +10,8 @@ export const useFeedback = () => {
     setSubmitted,
   } = useContext(FeedbackContext);
 
-  const handleSubmit = async ({ actor }) => {
-    const payload = { energy, selectedTask, feedback, actor }; // Ensure actor is included
+  const handleSubmit = async ({ actor, goal }) => {
+    const payload = { energy, selectedTask, feedback, actor, goal }; // Ensure all fields are included
     console.log('Submitting payload:', payload); // Debugging: Log the payload
     try {
       const data = await submitFeedback(payload);

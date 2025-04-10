@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FeedbackContext } from './context/FeedbackContext';
 import { useFeedback } from './hooks/useFeedback';
 import './style.css';
@@ -16,14 +16,50 @@ const App = () => {
     actor,
   } = useContext(FeedbackContext);
   const { handleSubmit } = useFeedback();
-  
-  // removed activeTask for simplification
 
-  const tasks = [
-    '15 min vocab review',
-    'Passive listening exercise',
-    '5-min grammar quiz',
+  // Reintroduce goal state
+  const goals = [
+    {
+      id: 'improve-spanish-reading',
+      title: 'Improve Spanish Reading Fluency',
+      description: 'Read articles and short stories with better comprehension.',
+    },
+    {
+      id: 'retain-new-vocabulary',
+      title: 'Retain New Vocabulary',
+      description: 'Practice techniques to make new words stick.',
+    },
+    {
+      id: 'boost-grammar-confidence',
+      title: 'Boost Grammar Confidence',
+      description: 'Lightweight grammar drills to improve structure awareness.',
+    },
   ];
+
+  const [selectedGoal, setSelectedGoal] = useState(() => {
+    return localStorage.getItem('selectedGoal') || '';
+  });
+
+  useEffect(() => {
+    if (selectedGoal) {
+      localStorage.setItem('selectedGoal', selectedGoal);
+    }
+  }, [selectedGoal]);
+
+  const tasksByGoal = {
+    'improve-spanish-reading': [
+      'Read short article + summarize',
+      'Practice with story excerpt',
+    ],
+    'retain-new-vocabulary': [
+      'Flashcard cycle',
+      'Context sentence creation',
+    ],
+    'boost-grammar-confidence': [
+      '5-min grammar quiz',
+      'Correct 3 old mistakes',
+    ],
+  };
 
   return (
     <section className="app-container">
@@ -31,33 +67,56 @@ const App = () => {
         Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening'}, {actor}!
       </h2>
       <p className="plate-prompt">What’s on your plate right now?</p>
-      <label htmlFor="taskSelect">Choose a task:</label>
-      <select
-        id="taskSelect"
-        className="task-select"
-        value={selectedTask}
-        onChange={(e) => setSelectedTask(e.target.value)}
-      >
-        <option value="">-- Select a task --</option>
-        {tasks.map((task, index) => (
-          <option key={index} value={task}>
-            {task}
-          </option>
+
+      <div className="goal-tabs">
+        {goals.map((goal) => (
+          <button
+            key={goal.id}
+            className={`goal-tab${selectedGoal === goal.id ? ' selected' : ''}`}
+            onClick={() => setSelectedGoal(goal.id)}
+          >
+            <strong>{goal.title}</strong>
+            <div className="goal-desc">{goal.description}</div>
+          </button>
         ))}
-      </select>
+      </div>
+
+      {selectedGoal && (
+        <>
+          <p className="task-prompt">Choose a task for this goal:</p>
+          <div className="task-buttons">
+            {(tasksByGoal[selectedGoal] || []).map((task, index) => (
+              <button
+                key={index}
+                className={`task-button ${selectedTask === task ? 'selected' : ''}`}
+                onClick={() => setSelectedTask(task)}
+              >
+                {task}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
       <h1>Flow Feedback</h1>
       {!submitted ? (
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          setSubmitted(true);
-          setTimeout(() => {
-            setSubmitted(false);
-          }, 4000); // Reset after 4 seconds
-          handleSubmit({ actor });
-          setEnergy(50);
-          setFeedback('');
-          setSelectedTask('');
-        }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSubmitted(true);
+            setTimeout(() => setSubmitted(false), 4000);
+            handleSubmit({
+              actor,
+              goal: selectedGoal, // Correctly pass selectedGoal as goal
+              selectedTask,
+              energy,
+              feedback,
+            });
+            setEnergy(50);
+            setFeedback('');
+            setSelectedTask('');
+          }}
+        >
           <label>How energized are you right now? {energy}%</label>
           <input
             type="range"
@@ -76,11 +135,7 @@ const App = () => {
             onChange={(e) => setFeedback(e.target.value)}
           />
 
-          <button
-            className="submit-button"
-            type="submit"
-            disabled={!selectedTask}
-          >
+          <button className="submit-button" type="submit" disabled={!selectedTask || !selectedGoal}>
             Submit Feedback
           </button>
         </form>

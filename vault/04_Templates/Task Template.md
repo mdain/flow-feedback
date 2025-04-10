@@ -1,30 +1,32 @@
-# Task: {{title}}
-Type:: Task
-taskId:: {{title:lowercase:dash}}
-Status:: not started
-Created:: {{date}}
-Owners:: [[{{owner}}]]
-Related Goal:: [[ ]]
-Tags:: #task
+<%*
+let description = await tp.system.prompt("Brief description of the task");
+let title = tp.file.title;
+let goalId = Math.floor(Math.random() * 1000000).toString();
+-%>
 
-## Description
-[Brief description of what this task involves.]
+# 📝 <%- title %>
 
-## Confidence
-Confidence:: computed
-Note:: Confidence is inferred from energy logs, frequency, and recency of engagement.
+**Status:** not started  
+**Created:** <% tp.date.now("YYYY-MM-DD") %>  
+**Owner:** [[Unassigned]]  
+**Goal ID:** `<%- goalId %>`  
+**Task ID:** `<%- title.toLowerCase().replaceAll(" ", "-") %>`  
+**Tags:** #task
 
-## Timing
-- Target date: {{due_date}}
-- Suggested rhythm: 
+---
 
-## Nudges
-- [Optional: Notes from strategist or system when attention is needed.]
+## 🔍 Description
+<%- description %>
 
-## Blocked by
-- [Optional: Other tasks or decisions preventing momentum.]
+---
 
-## System Feedback
-- Energy logs: pending
-- Recent engagement: none
-- Notes: This section may be updated by the strategist view or system summarization.
+## 📈 Confidence (System-computed)
+**Confidence:** _computed from engagement_  
+
+---
+
+## 🧠 System Feedback (Auto-generated)
+- **Energy logs:** pending  
+- **Recent engagement:** none  
+- **Parent Task (if subtask):**  
+- **Notes:** Synthesized from logs and strategist view.

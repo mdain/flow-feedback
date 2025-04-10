@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "05_Strategist_Dashboard/Task Overview.md",
+                "file": "03_Tasks/Task - Create task files with goalId linkage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Task Overview"
+              "title": "Task - Create task files with goalId linkage"
             }
           }
         ]
@@ -165,36 +165,37 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false
     }
   },
   "active": "5dcd050c6356412c",
   "lastOpenFiles": [
+    "05_Strategist_Dashboard/Task Overview.md",
+    "03_Tasks/Task - Test frontend task filtering.md",
+    "02_Goals/Prototype Feedback Loop System.md",
+    "04_Templates/Task Template.md",
+    "03_Tasks/Task - Implement task API endpoint.md",
+    "03_Tasks/Task - Create task files with goalId linkage.md",
+    "03_Tasks/Task - Refactor frontend to use API data.md",
+    "04_Templates/Goal Template.md",
+    "03_Tasks/Unassigned.md",
+    "03_Tasks/Task - Build API route to load goals dynamically.md",
+    "03_Tasks/Task - 15 min vocab review.md",
+    "Task - Build API route to load goals dynamically.md",
+    "Task - Refactor frontend to use API data.md",
+    "Untitled.md",
+    "02_Goals/Goal - Language Fluency.md",
+    "02_Goals/Untitled.md",
+    "06_Logs/fdbk-2025-04-09-1822-miguel-context-sentence-creation.md",
+    "06_Logs/fdbk-2025-04-09-1815-miguel-5-min-grammar-quiz.md",
+    "06_Logs/fdbk-2025-04-09-1810-miguel-correct-3-old-mistakes.md",
     "06_Logs/fdbk-2025-04-09-1612-miguel-15-min-vocab-review.md",
     "05_Strategist_Dashboard/Inventory.md",
-    "05_Strategist_Dashboard/Task Overview.md",
     "06_Logs/fdbk-2025-04-08-2151-miguel-5-min-grammar-quiz.md",
     "06_Logs/fdbk-2025-04-08-2140-miguel-5-min-grammar-quiz.md",
     "06_Logs/fdbk-2025-04-08-2125-miguel-passive-listening-exercise.md",
     "06_Logs/fdbk-2025-04-08-2124-miguel-5-min-grammar-quiz.md",
-    "06_Logs/fdbk-2025-04-08-2120-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2103-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2104-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1721-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1911-unknown-actor-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2100-unknown-actor-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2059-unknown-actor-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2045-unknown-actor-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-2025-unknown-actor-5-min-grammar-quiz.md",
-    "06_Logs/fdbk-2025-04-08-1938-unknown-actor-15-min-vocab-review.md",
-    "06_Logs/fdbk-2025-04-08-1809-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1927-unknown-actor-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1803-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1801-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1758-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1756-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1725-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-1752-miguel-passive-listening-exercise.md",
-    "06_Logs/fdbk-2025-04-08-xxxx-miguel-passive-listening-exercise.md.md"
+    "06_Logs/fdbk-2025-04-08-2120-miguel-passive-listening-exercise.md"
   ]
 }

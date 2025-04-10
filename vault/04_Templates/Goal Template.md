@@ -1,7 +1,8 @@
 # Goal: {{title}}
 Type:: Goal
 goalId:: {{title:lowercase:dash}}
-Owners:: [[{{owner}}]]
+title:: {{title}}
+Owners:: [[{{owner}}]]  %% May remain unassigned until actors engage with tasks %%
 Status:: active
 Tags:: #goal
 LastUpdated:: {{date}}
@@ -14,17 +15,20 @@ Momentum:: stable
 [Free-form reflection]
 
 ## Connected Tasks
+%% List of manually referenced tasks for navigation; each task should include goalId metadata %%
 - [[Task - Passive listening]]
 - [[Task - Grammar journaling]]
 
 ## Resonance Pattern
+%% Derived from engaged actor's rhythms, optionally summarized here %%
 - Best time:
 - Avoid:
 - Triggering conditions:
 
 ## Strategist Notes
-[Filled in by Strategist or LLM]
+%% Observations, nudges, or reframing from strategist perspective or LLM assistance %%
 
 ## System Notes
+%% Confidence and momentum values are synthesized from task activity and feedback loops %%
 - Confidence is derived from log trends, decay, and task alignment.
 - This section may be enriched by LLM-based synthesis.
